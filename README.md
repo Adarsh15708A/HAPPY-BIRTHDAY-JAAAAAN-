@@ -1,100 +1,84 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Happy Birthday ❤️</title>
-  <style>
-    :root{--bg:#0b1020;--accent:#ff6b81;--accent2:#ffd166}
-    *{box-sizing:border-box}
-    body{margin:0;font-family:sans-serif;background:linear-gradient(180deg,#07102a,#0b1020);color:#fff;
-      min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
-    .wrap{max-width:800px;width:100%;background:rgba(255,255,255,0.05);padding:24px;border-radius:16px;
-      text-align:center;box-shadow:0 10px 40px rgba(0,0,0,0.6);position:relative}
-    h1{margin:0 0 8px;font-size:32px;color:#ff6b81}
-    p{margin:0 0 16px}
-    textarea{width:100%;height:160px;background:rgba(255,255,255,0.05);color:#fff;
-      border:0;border-radius:8px;padding:10px}
-    button{margin-top:12px;padding:12px 20px;border:0;border-radius:8px;cursor:pointer;
-      font-weight:bold;background:linear-gradient(90deg,#ff6b81,#ff9bb3);color:#fff}
-    #countdownOverlay {position:absolute;top:0;left:0;width:100%;height:100%;
-      background:#0b1020;display:flex;align-items:center;justify-content:center;
-      font-size:72px;font-weight:bold;color:#ff6b81;z-index:10;}
-    canvas{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none}
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Happy Birthday Jaanu ❤️</title>
+<style>
+:root{--bg:#0b1020;--accent:#ff6b81;--accent2:#ffd166}
+*{box-sizing:border-box}
+body{margin:0;font-family:sans-serif;background:linear-gradient(180deg,#07102a,#0b1020);color:#fff;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;overflow:hidden}
+.wrap{max-width:900px;width:100%;background:rgba(255,255,255,0.05);padding:30px;border-radius:20px;text-align:center;box-shadow:0 10px 50px rgba(0,0,0,0.7);position:relative;overflow:hidden}
+h1{margin:0 0 10px;font-size:36px;color:#ff6b81}
+p{margin:0 0 16px}
+button{margin-top:12px;padding:12px 24px;border:0;border-radius:10px;cursor:pointer;font-weight:bold;background:linear-gradient(90deg,#ff6b81,#ff9bb3);color:#fff;font-size:16px}
+#countdownOverlay{position:absolute;top:0;left:0;width:100%;height:100%;background:#0b1020;display:flex;align-items:center;justify-content:center;font-size:80px;font-weight:bold;color:#ff6b81;z-index:10}
+canvas{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:5}
+.card{margin-top:20px;padding:20px;background:rgba(255,255,255,0.03);border-radius:15px;min-height:140px;display:flex;align-items:center;justify-content:center;flex-direction:column;font-size:18px;line-height:1.6;transition:all 0.6s ease-in-out;opacity:0;transform:translateY(30px)}
+.card.active{opacity:1;transform:translateY(0)}
+#photoBox{width:260px;height:260px;margin:20px auto;border-radius:15px;background:linear-gradient(180deg,#0b1324,#071025);display:flex;align-items:center;justify-content:center;border:2px dashed rgba(255,255,255,0.05);overflow:hidden}
+#photoBox img{width:100%;height:100%;object-fit:cover}
+input[type="file"],input[type="text"]{width:100%;padding:10px;border-radius:8px;border:0;background:rgba(255,255,255,0.02);color:#fff;margin-top:10px}
+</style>
 </head>
 <body>
-  <div class="wrap">
-    <canvas id="confetti"></canvas>
-    <div id="countdownOverlay">10</div>
-    <h1 id="title">Happy Birthday, Jaanu ❤️</h1>
-    <p>4 October · From Your Love</p>
-    <div id="messagePreview">
-      Tere bina zindagi adhoori si lagti hai,<br>
-      Teri muskaan se rooh roshan ho jaati hai,<br>
-      Janamdin pe bas itna kehna hai,<br>
-      Tu meri duaon ka sabse khoobsurat silsila hai ❤️<br><br>
-      Har khushi tumhari ho jaye,<br>
-      Tum sada hasti raho 🌹
-    </div>
-    <button id="playBtn">Play Surprise 🎶</button>
-  </div>
+<div class="wrap">
+<canvas id="confetti"></canvas>
+<div id="countdownOverlay">10</div>
+<h1 id="title">Happy Birthday, Jaanu ❤️</h1>
+<p>4 October · From Your Love</p>
+<div id="cardsContainer">
+  <div class="card active">Tere bina zindagi adhoori si lagti hai,<br>Teri muskaan se rooh roshan ho jaati hai,<br>Janamdin pe bas itna kehna hai,<br>Tu meri duaon ka sabse khoobsurat silsila hai ❤️</div>
+  <div class="card">Har khushi tumhari ho jaye,<br>Har gham tumse door ho jaye,<br>Tumhari zindagi mein sirf pyar ho,<br>Aur tumhari har dua qubool ho jaye 💕</div>
+  <div class="card">Tum meri duniya ki sabse khoobsurat tasveer ho,<br>Mere dil ki dhadkan aur meri rooh ki zaroorat ho,<br>Iss khaas din par bas dua hai,<br>Tum sada hasti raho 🌹</div>
+  <div class="card">Janamdin ka din tumhare liye khushiyon se bhara ho,<br>Har pal tumhare sapne poore ho,<br>Tumhari muskaan sada rahe,<br>Yahi dua hai meri ❤️</div>
+  <div class="card">Jaanu, aaj ke din tumhari zindagi khushiyon se roshan ho,<br>Har saal tum aur bhi khoobsurat bano,<br>Janamdin mubarak ho meri pyari jaan! 🎂✨</div>
+</div>
+<div id="photoBox"><img id="photoImg" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='600'><rect width='100%' height='100%' fill='%230b1020'/><text x='50%' y='50%' fill='%23ffffff' font-size='22' font-family='Arial' text-anchor='middle'>Add her photo</text></svg>"></div>
+<input type="file" id="photoUpload" accept="image/*">
+<input type="text" id="nameInput" placeholder="Type her name (e.g. Jaanu)" value="Jaanu">
+<button id="playBtn">Play Surprise 🎶</button>
+</div>
+<script>
+// Confetti
+const canvas=document.getElementById('confetti');
+const ctx=canvas.getContext('2d');let W,H;
+function resize(){W=canvas.width=innerWidth;H=canvas.height=innerHeight}
+window.addEventListener('resize',resize);resize();
+function random(min,max){return Math.random()*(max-min)+min}
+function launchConfetti(){const pieces=[];for(let i=0;i<120;i++){pieces.push({x:random(0,W),y:random(-H,0),vx:random(-1.5,1.5),vy:random(2,6),r:random(4,9),c:['#ff6b81','#ffd166','#8ad2ff','#c2ffb3'][Math.floor(Math.random()*4)]})}
+let t=0;function draw(){t++;ctx.clearRect(0,0,W,H);for(const p of pieces){p.x+=p.vx;p.y+=p.vy;p.vy+=0.04;ctx.fillStyle=p.c;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill()}if(t<200)requestAnimationFrame(draw)}draw()}
 
-  <script>
-    // Confetti setup
-    const canvas = document.getElementById('confetti');
-    const ctx = canvas.getContext('2d'); let W,H;
-    function resize(){W=canvas.width=innerWidth;H=canvas.height=innerHeight}
-    window.addEventListener('resize',resize);resize();
-    function random(min,max){return Math.random()*(max-min)+min}
-    function launchConfetti(){
-      const pieces=[];for(let i=0;i<100;i++){
-        pieces.push({x:random(0,W),y:random(-H,0),vx:random(-1,1),vy:random(2,6),
-          r:random(4,9),c:['#ff6b81','#ffd166','#8ad2ff','#c2ffb3'][Math.floor(Math.random()*4)]})
-      }
-      let t=0;function draw(){t++;ctx.clearRect(0,0,W,H);
-        for(const p of pieces){p.x+=p.vx;p.y+=p.vy;p.vy+=0.05;
-          ctx.fillStyle=p.c;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill();}
-        if(t<200)requestAnimationFrame(draw);} draw();
-    }
+// Cards animation + TTS male voice
+const cards=document.querySelectorAll('.card');
+let currentCard=0;
+function showNextCard(){cards.forEach(c=>c.classList.remove('active'));cards[currentCard].classList.add('active');
+  // Male voice read
+  if('speechSynthesis' in window){
+    let text=cards[currentCard].innerText;
+    let u=new SpeechSynthesisUtterance(`${document.getElementById('nameInput').value || 'Jaanu'}, ${text}`);
+    u.lang='hi-IN';u.rate=0.9;
+    let voices=speechSynthesis.getVoices();
+    let maleVoice=voices.find(v=>(v.name.toLowerCase().includes('male')||v.name.toLowerCase().includes('man'))&&v.lang.startsWith('hi'));
+    if(maleVoice) u.voice=maleVoice;
+    speechSynthesis.speak(u);
+  }
+  currentCard=(currentCard+1)%cards.length;
+}
 
-    // TTS + music with male voice
-    document.getElementById('playBtn').addEventListener('click',()=>{
-      let text=document.getElementById('messagePreview').innerText;
-      if('speechSynthesis' in window){
-        let u=new SpeechSynthesisUtterance(`Happy Birthday Jaanu! ${text}`);
-        u.lang='hi-IN'; u.rate=0.9;
+// Photo upload
+document.getElementById('photoUpload').addEventListener('change',e=>{
+  const f=e.target.files[0]; if(!f) return; document.getElementById('photoImg').src=URL.createObjectURL(f);
+});
 
-        // Select male voice if available
-        let voices = speechSynthesis.getVoices();
-        let maleVoice = voices.find(v => 
-          (v.name.toLowerCase().includes("male") || v.name.toLowerCase().includes("man"))
-          && v.lang.startsWith("hi")
-        );
-        if(maleVoice) u.voice = maleVoice;
+// Play button
+document.getElementById('playBtn').addEventListener('click',()=>{launchConfetti();showNextCard();
+  let interval=setInterval(showNextCard,6000); // next card every 6 sec
+});
 
-        speechSynthesis.speak(u);
-      }
-
-      try{
-        const A=new (window.AudioContext||window.webkitAudioContext)();
-        const notes=[440,523.25,659.25,523.25,440]; let t=A.currentTime;
-        for(let n of notes){const o=A.createOscillator(),g=A.createGain();
-          o.type='sine';o.frequency.setValueAtTime(n,t);
-          g.gain.setValueAtTime(0.0001,t);g.gain.exponentialRampToValueAtTime(0.08,t+0.02);
-          g.gain.exponentialRampToValueAtTime(0.0001,t+0.4);
-          o.connect(g);g.connect(A.destination);o.start(t);o.stop(t+0.5); t+=0.4}
-      }catch(e){}
-      launchConfetti();
-    });
-
-    // Countdown
-    let countdown=10;const overlay=document.getElementById('countdownOverlay');
-    const timer=setInterval(()=>{
-      countdown--;if(countdown<=0){overlay.style.display='none';clearInterval(timer);
-        document.getElementById('playBtn').click();}
-      else overlay.textContent=countdown;
-    },1000);
-  </script>
+// Countdown overlay
+let countdown=10;const overlay=document.getElementById('countdownOverlay');
+const timer=setInterval(()=>{countdown--;if(countdown<=0){overlay.style.display='none';clearInterval(timer);document.getElementById('playBtn').click()}else overlay.textContent=countdown},1000);
+</script>
 </body>
 </html>
