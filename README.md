@@ -58,21 +58,32 @@
         if(t<200)requestAnimationFrame(draw);} draw();
     }
 
-    // TTS + music
+    // TTS + music with male voice
     document.getElementById('playBtn').addEventListener('click',()=>{
       let text=document.getElementById('messagePreview').innerText;
-      if('speechSynthesis'in window){
+      if('speechSynthesis' in window){
         let u=new SpeechSynthesisUtterance(`Happy Birthday Jaanu! ${text}`);
-        u.lang='hi-IN';u.rate=0.9;window.speechSynthesis.speak(u);
+        u.lang='hi-IN'; u.rate=0.9;
+
+        // Select male voice if available
+        let voices = speechSynthesis.getVoices();
+        let maleVoice = voices.find(v => 
+          (v.name.toLowerCase().includes("male") || v.name.toLowerCase().includes("man"))
+          && v.lang.startsWith("hi")
+        );
+        if(maleVoice) u.voice = maleVoice;
+
+        speechSynthesis.speak(u);
       }
-      try{const A=new (window.AudioContext||window.webkitAudioContext)();
-        const notes=[440,523.25,659.25,523.25,440];let t=A.currentTime;
+
+      try{
+        const A=new (window.AudioContext||window.webkitAudioContext)();
+        const notes=[440,523.25,659.25,523.25,440]; let t=A.currentTime;
         for(let n of notes){const o=A.createOscillator(),g=A.createGain();
           o.type='sine';o.frequency.setValueAtTime(n,t);
-          g.gain.setValueAtTime(0.0001,t);
-          g.gain.exponentialRampToValueAtTime(0.08,t+0.02);
+          g.gain.setValueAtTime(0.0001,t);g.gain.exponentialRampToValueAtTime(0.08,t+0.02);
           g.gain.exponentialRampToValueAtTime(0.0001,t+0.4);
-          o.connect(g);g.connect(A.destination);o.start(t);o.stop(t+0.5);t+=0.4}
+          o.connect(g);g.connect(A.destination);o.start(t);o.stop(t+0.5); t+=0.4}
       }catch(e){}
       launchConfetti();
     });
